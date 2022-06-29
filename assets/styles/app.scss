@@ -20,6 +20,34 @@ html {
     scroll-behavior: smooth;
 }
 
+.w-fit {
+    width: fit-content;
+}
+
+.title-size {
+    font-size: 72px;
+    font-weight: 900;
+}
+
+.title-before {
+    margin-block-end: -10px;
+    font-size: 2.125rem;
+    line-height: 2.125rem;
+    color: #183650;
+    font-weight: 700;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; /* Height of navbar */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 240px;
+    z-index: 600;
+  }
+
 .navbar{
     height: $navbarHeight;
 }
