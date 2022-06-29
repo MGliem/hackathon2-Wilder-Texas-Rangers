@@ -7,14 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/', name: 'home_')]
-class HomeController extends AbstractController
+#[Route('/apsidien', name: 'apsidien_')]
+class ApsidienController extends AbstractController
 {
-    #[Route('/apsidien', name: 'apsidien')]
+    #[Route('/home', name: 'home')]
     public function indexApsidien(ProjectRepository $projectRepository): Response
     {
         $projects = $projectRepository->findAll();
-        return $this->render('home/index.html.twig', [
+        return $this->render('apsidien/home/index.html.twig', [
             'projects' => $projects,
         ]);
     }

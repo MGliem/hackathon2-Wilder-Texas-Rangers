@@ -18,6 +18,23 @@ html {
     scroll-behavior: smooth;
 }
 
+.w-fit {
+    width: fit-content;
+}
+
+.title-size {
+    font-size: 72px;
+    font-weight: 900;
+}
+
+.title-before {
+    margin-block-end: -10px;
+    font-size: 2.125rem;
+    line-height: 2.125rem;
+    color: #183650;
+    font-weight: 700;
+}
+
 .sidebar {
     position: fixed;
     top: 0;
