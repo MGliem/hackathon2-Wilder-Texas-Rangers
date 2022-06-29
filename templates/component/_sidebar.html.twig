@@ -1,0 +1,32 @@
+<div class="container-fluid position-absolute">
+    <div class="row">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                {% if app.user %}
+                    <div class="d-flex justify-content-center text-secondary">
+                        {{ app.user.firstname }}
+                        {{ app.user.lastname }}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <img class="w-75" src="{{ asset('build/images/photo.jpg') }}" alt="">
+                    </div>
+                        <div class="d-flex justify-content-center text-secondary">
+                            {{ app.user.points }}
+                        </div>
+                    {% endif %}
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i>
+                                <span class="ms-1 d-none d-sm-inline">
+                                    Home
+                                                                    
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr></div>
+                </div>
+            </div>
+        </div>
+        
