@@ -2,6 +2,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import 'aos/dist/aos.css';
 
+$navbarHeight: 100px;
+
 body {
     background-color: $light;
     font-family: $textFont;
@@ -45,3 +47,13 @@ html {
     width: 240px;
     z-index: 600;
   }
+
+.navbar{
+    height: $navbarHeight;
+}
+
+.sidebar{
+    position: sticky;
+    height: calc(100vh - $navbarHeight);
+    top: $navbarHeight;
+}

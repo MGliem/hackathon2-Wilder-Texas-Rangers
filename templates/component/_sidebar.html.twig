@@ -1,0 +1,16 @@
+<div class="sidebar border-end border-primary border-3">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
+        {% if app.user %}
+            <p class="text-center text-secondary w-100">
+                {{ app.user.firstname }}
+                {{ app.user.lastname }}
+            </p>
+            <div class="d-flex justify-content-center">
+                <img class="w-75" src="{{ asset('build/images/photo.jpg') }}" alt=""></div>
+                <p class="text-center text-secondary w-100 mt-3">
+                    {{ app.user.points }}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    
