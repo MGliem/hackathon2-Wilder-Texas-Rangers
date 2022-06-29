@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
         $faker = Factory::create();
         for ($i = 0; $i < 3; $i++) {
             $user = new User;
-            $user->setEmail($faker->email());
+            $user->setEmail('user' . $i . '@apside.fr');
             $user->setRoles(['ROLE_USER']);
             $hashedPassword = $this->passwordHasher->hashPassword(
                 $user,
