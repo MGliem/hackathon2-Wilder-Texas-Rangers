@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\ProfileType;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +15,7 @@ class ProfileController extends AbstractController
     public function index(UserRepository $userRepository, Request $request): Response
     {
         $user = $this->getUser();
-        $form = $this->createForm(ProfileType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if (($form->isSubmitted() && $form->isValid())) {
