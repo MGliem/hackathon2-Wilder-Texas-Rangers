@@ -5,7 +5,6 @@
 
 {% block body %}
 	<h1 class="text-center text-primary mt-5 border-2 border-end-0 border-start-0 border border-primary p-2">Register</h1>
-	<form class="w-50 mx-auto my-5 d-flex flex-column">
 		{{ form_start(registrationForm) }}
 		{{ form_row(registrationForm.email) }}
 		{{ form_row(registrationForm.plainPassword, {
