@@ -31,7 +31,7 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $projectRepository->add($project, true);
 
-            return $this->redirectToRoute('roject_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('project/new.html.twig', [
