@@ -59,7 +59,6 @@ class RegistrationFormType extends AbstractType
             ->add('agency')
             ->add('bio', TextareaType::class)
             ->add('photo')
-            ->add('points')
         ;
     }
 
