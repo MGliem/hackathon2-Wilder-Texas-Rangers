@@ -26,6 +26,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $firstName;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $lastName;
+
+    #[ORM\Column(type: 'array')]
+    private $skills = [];
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $agency;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $bio;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $photo;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $points;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -94,5 +115,89 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getSkills(): ?array
+    {
+        return $this->skills;
+    }
+
+    public function setSkills(array $skills): self
+    {
+        $this->skills = $skills;
+
+        return $this;
+    }
+
+    public function getAgency(): ?string
+    {
+        return $this->agency;
+    }
+
+    public function setAgency(string $agency): self
+    {
+        $this->agency = $agency;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(string $bio): self
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getPoints(): ?int
+    {
+        return $this->points;
+    }
+
+    public function setPoints(?int $points): self
+    {
+        $this->points = $points;
+
+        return $this;
     }
 }
