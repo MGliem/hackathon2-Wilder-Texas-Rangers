@@ -6,6 +6,8 @@
         <title>
             {% block title %}
                 Apside           
+                                            
+                            
             {% endblock %}
         </title>
         <link rel="icon" href="{{ asset('build/images/favicon.png') }}">
@@ -16,15 +18,9 @@
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        {% block navbar %}
-            {% include "component/_navbar.html.twig" %}
-        {% endblock %}
-        <div class="d-flex">
-            {% include 'component/_sidebar.html.twig' %}
-            <div class="border-top border-primary border-3">
-                {% block body %}{% endblock %}
-            </div>
-        </div>
+        {% block navbar %}{% endblock %}
+        {% block body %}{% endblock %}
+
         {% block footer %}
             {% include 'component/_footer.html.twig' %}
         {% endblock %}
