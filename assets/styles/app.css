@@ -1,3 +1,7 @@
+@import "variables.scss";
+@import "~bootstrap/scss/bootstrap";
+@import 'aos/dist/aos.css';
+
 body {
     background-color: lightgray;
 }
