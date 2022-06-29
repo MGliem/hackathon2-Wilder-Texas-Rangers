@@ -4,4 +4,16 @@
 
 body {
     background-color: lightgray;
+    font-family: $textFont;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: $titleFont;
+}
+
+html {
+    scroll-behavior: smooth;
 }
