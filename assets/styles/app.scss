@@ -2,6 +2,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import 'aos/dist/aos.css';
 
+$navbarHeight: 100px;
+
 body {
     background-color: $light;
     font-family: $textFont;
@@ -18,13 +20,12 @@ html {
     scroll-behavior: smooth;
 }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding: 58px 0 0; /* Height of navbar */
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-    width: 240px;
-    z-index: 600;
-  }
+.navbar{
+    height: $navbarHeight;
+}
+
+.sidebar{
+    position: sticky;
+    height: calc(100vh - $navbarHeight);
+    top: $navbarHeight;
+}

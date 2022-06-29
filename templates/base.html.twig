@@ -5,11 +5,7 @@
         <meta charset="UTF-8">
         <title>
             {% block title %}
-                Apside        
-                                                                            
-                                                            
-                                            
-                            
+                Apside           
             {% endblock %}
         </title>
         <link rel="icon" href="{{ asset('build/images/favicon.png') }}">
@@ -25,7 +21,9 @@
         {% endblock %}
         <div class="d-flex">
             {% include 'component/_sidebar.html.twig' %}
-            {% block body %}{% endblock %}
+            <div class="border-top border-primary border-3">
+                {% block body %}{% endblock %}
+            </div>
         </div>
         {% block footer %}
             {% include 'component/_footer.html.twig' %}
