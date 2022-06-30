@@ -9,19 +9,21 @@
 	<div class="container-fluid">
 		<div class="row mt-5 mx-auto">
 			<div class="col">
-				<h2>Find a tech:
+				<h2 class="text-decoration-none">Find a tech:
 					<i class="bi bi-keyboard"></i>
 				</h2>
-				<img src="{{ asset('build/images/dev.jpg') }}" alt="a" class="w-75 h-75 m-5" 
-                style="box-shadow: 60px -16px #183650; object-fit: cover;">
-			</div>
 
-			<div class="col">
-				<h2>Find a project:
-					<i class="bi bi-folder"></i>
-				</h2><img src="{{ asset('build/images/project.jpg') }}" alt="a" class="w-75 m-5" 
-                style="box-shadow: 60px -16px #183650; object-fit: cover;">
-			</div>
+				<img src="{{ asset('build/images/dev.jpg') }}" alt="a" class="w-75 h-75 m-5" style="box-shadow: 60px -16px #183650; object-fit: cover;">
+			</a>
+		</div>
+
+		<div class="col">
+			<h2>Find a project:
+				<i class="bi bi-folder"></i>
+			</h2>
+			<a href="{{ path('apsidien_adopt') }}">
+				<img src="{{ asset('build/images/project.jpg') }}" alt="a" class="w-75 m-5" style="box-shadow: 60px -16px #183650; object-fit: cover;">
+			</a>
 		</div>
 	</div>
-{% endblock %}
+</div>{% endblock %}

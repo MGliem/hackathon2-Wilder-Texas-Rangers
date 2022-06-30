@@ -20,7 +20,7 @@
 					New project</a>
 			{% endif %}
 			{% if not is_granted('ROLE_MASTERCHIEF') %}
-				<a href="/absidien/adopt" class="text-decoration-none mx-3 fs-4">
+				<a href="{{ path('apsidien_adopt') }}" class="text-decoration-none mx-3 fs-4">
 					<i class="fa-solid fa-handshake"></i>
 					Match a project</a>
 			{% endif %}
