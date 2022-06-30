@@ -1,42 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index
+{% block title %}
+    Project index
+    
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('apsidienStyle') }}
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center mt-5">Project index</h1>
+    <div class="d-flex justify-content-center">
+        <h1 class="text-secondary title-size mt-5">
+            Project index   
+                
+        </h1>
+    </div>
+    {% if is_granted('ROLE_MASTERCHIEF') %}
+        <a class="text-decoration-none ms-4" href="{{ path('project_new') }}">
+            Create new
+                    
+        </a>
+    {% endif %}
 
-	<table class="table container">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Team</th>
-				<th>Picture1</th>
-				<th>Image2</th>
-				<th>Image3</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for project in projects %}
-				<tr>
-					<td>{{ project.name }}</td>
-					<td>{{ project.team }}</td>
-					<td>{{ project.picture1 }}</td>
-					<td>{{ project.image2 }}</td>
-					<td>{{ project.image3 }}</td>
-					<td>
-						<a class="btn btn-md mt-1 btn-outline-secondary" href="{{ path('project_show', {'id': project.id}) }}">Show</a>
-						{% if is_granted('ROLE_MASTERCHIEF') %}
-							<a href="{{ path('project_edit', {'id': project.id}) }}">Edit</a>
-						{% endif %}
-					</td>
-				</tr>
-			</td>
-		</tbody>
-	</tr>
-{% else %}
-	<tr>
-		<td colspan="8">no records found</td>
-	</tr>
-{% endfor %}</tbody></table>{% if is_granted('ROLE_MASTERCHIEF') %}<a href="{{ path('project_new') }}">Create new</a>{% endif %}{% endblock %}
+    <section class="home-apsidien container-fluid py-5">
+        <div class="title mx-auto w-fit mb-5"></div>
+        <div class="row pt-5">
+            {% for project in projects %}
+                <div class="col-lg-4">
+                    <div class="card col-lg-12 my-4">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="d-flex flex-column">
+                                <div class="title mx-auto w-fit mb-5">
+                                    <p class="title-before text-secondary fs-5">
+                                        Team 
+                                        {{ project.team|u.truncate('10', '...') }}
+                                    </p>
+                                    <h2 class="card-title text-center text-primary fs-3 fw-bold title-size">
+                                        {{ project.name|u.truncate(20, '...') }}
+                                    </h2>
+                                </div>
+                                <div class="position-relative">
+                                    <p class="card-text px-5">
+                                        {{ project.content|u.truncate(250, '...') }}
+                                    </p>
+                                    <div class="square-card-text"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="{{ path('project_show', { 'id': project.id}) }}" class="btn btn-secondary w-50">
+                                    See More
+                                </a>
+                                {% if is_granted('ROLE_MASTERCHIEF') %}
+                                    <a href="{{ path('project_edit', { 'id': project.id}) }}" class="btn btn-primary w-50">
+                                        Edit
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}
