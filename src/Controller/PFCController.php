@@ -31,8 +31,16 @@ class PFCController extends AbstractController
     #[Route('/{play}', name: 'app_p_f_c_play')]
     public function play(RequestStack $stack, string $play, UserRepository $userRepository): Response
     {
+        $dragon = rand(41, 70);
+
         $session = $stack->getSession();
         $user = $this->getUser();
+
+        if ($dragon === 69 || $dragon === 42){
+            $this->addFlash('info', 'dragon');
+            return $this->redirectToRoute('life_pfc');
+        }
+
         if ($play === 'rocks') {
             $this->addFlash('danger', 'ApsiMan played paper : YOU LOSE !');
             $user->setPoints($user->getPoints() - 5);
