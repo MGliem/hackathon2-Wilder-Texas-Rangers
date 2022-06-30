@@ -22,15 +22,15 @@ class PFCController extends AbstractController
     {
         $user = $this->getUser();
         if ($play === 'rocks') {
-            $this->addFlash('danger', 'ApsiMan played paper : YOU LOOSE !');
+            $this->addFlash('danger', 'ApsiMan played paper : YOU LOSE !');
             $user->setPoints($user->getPoints() - 5);
         }
         if ($play === 'scissor') {
-            $this->addFlash('danger', 'ApsiMan played rocks : YOU LOOSE !');
+            $this->addFlash('danger', 'ApsiMan played rocks : YOU LOSE !');
             $user->setPoints($user->getPoints() - 5);
         }
         if ($play === 'paper') {
-            $this->addFlash('danger', 'ApsiMan played scissors : YOU LOOSE !');
+            $this->addFlash('danger', 'ApsiMan played scissors : YOU LOSE !');
             $user->setPoints($user->getPoints() - 5);
         } else {
         }
