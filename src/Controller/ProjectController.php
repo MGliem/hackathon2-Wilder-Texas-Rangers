@@ -51,7 +51,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_MASTERCHIEF', 'ROLE_ADMIN')]
+    #[IsGranted('ROLE_MASTERCHIEF')]
     public function edit(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
         $form = $this->createForm(ProjectType::class, $project);
@@ -70,7 +70,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    #[IsGranted('ROLE_MASTERCHIEF', 'ROLE_ADMIN')]
+    #[IsGranted('ROLE_MASTERCHIEF')]
     public function delete(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
