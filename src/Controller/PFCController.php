@@ -36,7 +36,7 @@ class PFCController extends AbstractController
         $session = $stack->getSession();
         $user = $this->getUser();
 
-        if ($dragon === 69 || $dragon === 42){
+        if ($dragon === 69 || $dragon === 42) {
             $this->addFlash('info', 'dragon');
             return $this->redirectToRoute('life_pfc');
         }
