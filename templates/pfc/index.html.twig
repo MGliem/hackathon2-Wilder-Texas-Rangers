@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ApsiMan
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center mt-5">Are you ready to face ApsiMan ?</h1>
+
+	<p class="text-center text-primary" style="font-size: 2rem;">Try to beat ApsiMan in a game of RPS and win some points</p>
+
+	<div class="text-center text-primary" style="font-size: 1.5rem;">
+		<p>Make your choice</p>
+	</div>
+
+	{% for label, messages in app.flashes(['success', 'danger']) %}
+		{% for message in messages %}
+			<div class="alert alert-{{ label }} my-4 w-50 mx-auto">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+
+	<div class="container mb-5">
+
+		<div class="row mb-5">
+			<a class="col btn btn-outline-primary mx-5" href="/pfc/rocks">
+				<i class="fa-solid fa-meteor fa-2x"></i>
+				Rocks
+			</a>
+			<a class="col btn btn-outline-primary mx-5" href="/pfc/paper">
+				<i class="fa-solid fa-scroll fa-2x"></i>
+				Paper
+			</a>
+			<a class="col btn btn-outline-primary mx-5" href="/pfc/scissor">
+				<i class="fa-solid fa-scissors fa-2x"></i>
+				Scissor
+			</a>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h2>You</h2><br>
+				<div class="fa-3x">
+					<i class="fa-solid  fa-beat"></i>
+					<i class="fa-solid fa-heart fa-beat"></i>
+					<i class="fa-solid fa-heart fa-beat"></i>
+					<i class="fa-solid fa-heart fa-beat"></i>
+				</div>
+
+			</div>
+			<div class="col">
+				<h2>ApsiMan</h2><br>
+				<div class="fa-3x">
+					<i class="fa-solid fa-robot fa-bounce"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
