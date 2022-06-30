@@ -1,32 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project{% endblock %}
+{% block title %}Project
+{% endblock %}
 
 {# {% block stylesheets %} {{ encore_entry_link_tags('projectdetails') }} {% endblock %} #}
 
 {% block body %}
-<div class="details d-flex flex-column align-items-center m-5">
- <img src="{{ project.picture1 }}"/>
-    <h1 class="details-name text-center bg-light p-3 m-0">{{ project.name }}</h1>
-        <h2 class="fs-5 details-team">{{ project.team }}</h2>
-        <h3 class="fs-6 mb-5 details-date">Juin - Septembre 2023</h3>
-               <p> {{ project.content }} </p>
-            </tr>
-            <tr>
-                <th>Image2</th>
-                <td>{{ project.image2 }}</td>
-            </tr>
-            <tr>
-                <th>Image3</th>
-                <td>{{ project.image3 }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<div class="details d-flex flex-column align-items-center m-5">
+		<img src="{{ project.picture1 }}"/>
+		<h1 class="details-name text-center bg-light p-3 m-0">{{ project.name }}</h1>
+		<h2 class="fs-5 details-team">{{ project.team }}</h2>
+		<h3 class="fs-6 mb-5 details-date">Juin - Septembre 2023</h3>
+		<p>
+			{{ project.content }}
+		</p>
+	</tr>
+	<tr>
+		<th>Image2</th>
+		<td>{{ project.image2 }}</td>
+	</tr>
+	<tr>
+		<th>Image3</th>
+		<td>{{ project.image3 }}</td>
+	</tr>
+</tbody></table><a href="{{ path('project_index') }}">Back to the projects</a>{% if is_granted('ROLE_MASTERCHIEF') %}
 
-    <a href="{{ path('project_index') }}">Back to the projects</a>
-
-
-    {{ include('project/_delete_form.html.twig') }}
-</div>
-
-{% endblock %}
+{{ include('project/_delete_form.html.twig') }}{% endif %}</div>{% endblock %}
