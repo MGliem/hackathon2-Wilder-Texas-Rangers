@@ -18,7 +18,7 @@
 		</div>
 		{% if project is not null %}
 			<div class="col-lg-4 pt-5 mx-auto">
-				<div class="card col-lg-12 my-4">
+				<div class="card col-lg-12 my-4" data-aos="fade-left">
 					<div class="card-body d-flex flex-column justify-content-between">
 						<div class="d-flex flex-column">
 							<div class="title mx-auto w-fit mb-5">
@@ -39,6 +39,9 @@
 				<div class="d-flex justify-content-center gap-5">
 					<a href="{{ path('apsidien_adopt_reject', {'project': project.id}) }}">
 						<i class="rejected bi bi-x-square text-danger"></i>
+					</a>
+					<a href="{{ path('apsidien_adopt_reject', {'project': project.id}) }}">
+						<i class="accepted fa-solid fa-face-grin-hearts text-warning"></i>
 					</a>
 					<a href="{{ path('apsidien_adopt_add', {'project': project.id}) }}">
 						<i class="accepted bi bi-check-square text-success"></i>

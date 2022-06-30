@@ -11,6 +11,12 @@
                     <i class="fa-solid fa-address-card"></i>
                     Profile
                 </a>
+                {% if is_granted('ROLE_MASTERCHIEF') %}
+                    <a href="{{ path('manager_adopt') }}" class="text-decoration-none mx-3 fs-4">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Find an apsidian
+                    </a>
+                {% endif %}
                 <a href="/project" class="text-decoration-none mx-3 fs-4">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     Find a project

@@ -16,22 +16,22 @@
 	</div>
 
 	<section class="home-apsidien container-fluid py-5">
-	
-	 {{ form_start(form) }}
 
-	<div class="d-flex justify-content-end">
-    {{ form_errors(form.search) }}
-	<div class="input-group mb-3 w-25">
-		{{ form_widget(form.search) }}
-		<button class="btn btn-primary" type="submit">Search</button>
-	</div>
-	{{ form_end(form) }}
-	</div>
+		{{ form_start(form) }}
+
+		<div class="d-flex justify-content-end">
+			{{ form_errors(form.search) }}
+			<div class="input-group mb-3 w-25">
+				{{ form_widget(form.search) }}
+				<button class="btn btn-primary" type="submit">Search</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
 		<h2 class="soustitre d-flex justify-content-center text-primary mt-5">
 			Super Project
 		</h2>
-			
-	<div class="title mx-auto w-fit mb-5"></div>
+
+		<div class="title mx-auto w-fit mb-5"></div>
 
 
 		<div class="row pt-5">
@@ -87,7 +87,7 @@
 		<div class="row pt-5">
 			{% for project in projects %}
 				<div class="col-lg-4">
-					<div class="card col-lg-12 my-4">
+					<div class="card col-lg-12 my-4" data-aos="zoom-in-up" data-aos-duration="750">
 						<div class="card-body d-flex flex-column justify-content-between">
 							<div class="d-flex flex-column">
 								<div class="title mx-auto w-fit mb-5">
