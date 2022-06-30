@@ -3,6 +3,7 @@
 @import 'aos/dist/aos.css';
 
 $navbarHeight: 100px;
+$footerHeight: 75px;
 
 body {
     background-color: $light;
@@ -48,11 +49,23 @@ html {
 .sidebar{
     position: sticky;
     height: calc(100vh - $navbarHeight);
-    top: calc($navbarHeight - 3px);
+    top: $navbarHeight;
     min-width: 240px;
     z-index: 1001;
 }
 
 .navbar-brand img {
     max-width: 237px;
+}
+
+footer {
+    height: $footerHeight;
+}
+
+footer a {
+    color:#E89759;
+}
+
+footer a:hover {
+    color:#F0F0F0;
 }
