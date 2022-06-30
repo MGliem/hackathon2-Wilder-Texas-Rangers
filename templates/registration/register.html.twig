@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseConnect.html.twig' %}
 
 {% block title %}Register
 {% endblock %}
@@ -17,7 +17,6 @@
 		{{ form_row(registrationForm.agency) }}
 		{{ form_row(registrationForm.bio) }}
 		{{ form_row(registrationForm.photo) }}
-		{{ form_row(registrationForm.points) }}
 		{{ form_row(registrationForm.agreeTerms) }}
 		<button type="submit" class="btn btn-lg mt-1 btn-secondary">Register</button>
 		{{ form_end(registrationForm) }}
