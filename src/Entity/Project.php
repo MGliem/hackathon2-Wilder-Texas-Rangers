@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
@@ -34,8 +36,13 @@ class Project
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
-    #[ORM\ManyToOne(targetEntity: Matching::class, inversedBy: 'project')]
-    private $matching;
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Matching::class)]
+    private $matchings;
+
+    public function __construct()
+    {
+        $this->matchings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -126,14 +133,32 @@ class Project
         return $this;
     }
 
-    public function getMatching(): ?Matching
+    /**
+     * @return Collection<int, Matching>
+     */
+    public function getMatchings(): Collection
     {
-        return $this->matching;
+        return $this->matchings;
     }
 
-    public function setMatching(?Matching $matching): self
+    public function addMatching(Matching $matching): self
     {
-        $this->matching = $matching;
+        if (!$this->matchings->contains($matching)) {
+            $this->matchings[] = $matching;
+            $matching->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatching(Matching $matching): self
+    {
+        if ($this->matchings->removeElement($matching)) {
+            // set the owning side to null (unless already changed)
+            if ($matching->getProject() === $this) {
+                $matching->setProject(null);
+            }
+        }
 
         return $this;
     }
