@@ -25,19 +25,31 @@ class ApsidienController extends AbstractController
     #[Route('/adopt', name: 'adopt')]
     public function openProjects(ProjectRepository $projectRepository): Response
     {
-        $project = $projectRepository->findOneBy(["status" => "open"]);
+        $project = $projectRepository->findOneBy(["status" => "open", 'matching' => null]);
         return $this->render('apsidien/adopt.html.twig', [
             'project' => $project,
         ]);
     }
 
     #[Route('/adopt/add/{project}', name: 'adopt_add')]
-    public function addProject(Project $project, ProjectRepository $projectRepository, MatchingRepository $matchingRepository): Response
+    public function addProject(Project $project, MatchingRepository $matchingRepository): Response
     {
         $matching = new Matching();
         $matching->addApsidian($this->getUser());
         $matching->addProject($project);
         $matching->setLiked(1);
+        $matchingRepository->add($matching, true);
+        return $this->redirectToRoute('apsidien_adopt');
+    }
+
+    #[Route('/adopt/reject/{project}', name: 'adopt_reject')]
+    public function rejectProject(Project $project, MatchingRepository $matchingRepository): Response
+    {
+        $matching = new Matching();
+        $matching->addApsidian($this->getUser());
+        $matching->addProject($project);
+        $matching->setLiked(2);
+        $matchingRepository->add($matching, true);
         return $this->redirectToRoute('apsidien_adopt');
     }
 }

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220630140351 extends AbstractMigration
+final class Version20220630142232 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20220630140351 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE matching (id INT AUTO_INCREMENT NOT NULL, master_chief_status VARCHAR(255) DEFAULT NULL, liked INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE matching (id INT AUTO_INCREMENT NOT NULL, liked INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE project ADD matching_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE project ADD CONSTRAINT FK_2FB3D0EEB39876B8 FOREIGN KEY (matching_id) REFERENCES matching (id)');
         $this->addSql('CREATE INDEX IDX_2FB3D0EEB39876B8 ON project (matching_id)');

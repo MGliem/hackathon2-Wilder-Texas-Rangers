@@ -21,9 +21,6 @@ class Matching
     #[ORM\OneToMany(mappedBy: 'matching', targetEntity: Project::class)]
     private $project;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $masterChiefStatus;
-
     #[ORM\Column(type: 'integer')]
     private $liked;
 
