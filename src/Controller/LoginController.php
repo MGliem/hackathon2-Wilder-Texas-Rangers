@@ -28,4 +28,10 @@ class LoginController extends AbstractController
     public function logout()
     {
     }
+
+    #[Route('/', name: 'noroute', methods: ['GET'])]
+    public function noroute()
+    {
+      return $this->redirectToRoute('login');
+    }
 }

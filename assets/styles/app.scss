@@ -2,6 +2,9 @@
 @import "~bootstrap/scss/bootstrap";
 @import 'aos/dist/aos.css';
 
+$navbarHeight: 100px;
+$footerHeight: 75px;
+
 body {
     background-color: $light;
     font-family: $textFont;
@@ -32,5 +35,54 @@ html {
 h1 {
     font-size: 54px;
     font-weight: 900;
-    color: $secondary;
+    color: $secondary; }
+    
+.w-fit {
+    width: fit-content;
+}
+
+.title-size {
+    font-size: 72px;
+    font-weight: 900;
+}
+
+.title-before {
+    margin-block-end: -10px;
+    font-size: 2.125rem;
+    line-height: 2.125rem;
+    color: #183650;
+    font-weight: 700;
+}
+
+
+.navbar{
+    height: $navbarHeight;
+    position: sticky;
+    top:0;
+    z-index: 1000;
+}
+
+.sidebar{
+    position: sticky;
+    height: calc(100vh - $navbarHeight);
+    top: $navbarHeight;
+    min-width: 240px;
+    max-width: 240px;
+    z-index: 1001;
+}
+
+.navbar-brand img {
+    width: 237px;
+}
+
+footer {
+    height: $footerHeight;
+}
+
+footer a {
+    color:#E89759;
+}
+
+footer a:hover {
+    color:#F0F0F0;
 }

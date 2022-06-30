@@ -1,0 +1,19 @@
+$homeCardHeight: 400px;
+$square: 75px;
+
+.home-apsidien .card {
+    height: $homeCardHeight;
+}
+.home-apsidien .card-text {
+    position: relative;
+    z-index: 2;
+}
+.square-card-text {
+    position: absolute;
+    top:-25px;
+    left: 10px;
+    z-index: 1;
+    height: $square;
+    width: $square;
+    background-color: rgba(231, 118, 32, 0.3);
+}
