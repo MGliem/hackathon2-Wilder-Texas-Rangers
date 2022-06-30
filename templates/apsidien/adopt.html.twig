@@ -36,12 +36,12 @@
 						</div>
 					</div>
 				</div>
-				<div class="d-flex justify-content-center gap-5">
+				<div class="d-flex justify-content-between">
 					<a href="{{ path('apsidien_adopt_reject', {'project': project.id}) }}">
 						<i class="rejected bi bi-x-square text-danger"></i>
 					</a>
 					<a href="{{ path('apsidien_adopt_reject', {'project': project.id}) }}">
-						<i class="accepted fa-solid fa-face-grin-hearts text-warning"></i>
+						<i class="my-2 accepted fa-solid fa-face-grin-hearts text-warning"></i>
 					</a>
 					<a href="{{ path('apsidien_adopt_add', {'project': project.id}) }}">
 						<i class="accepted bi bi-check-square text-success"></i>
