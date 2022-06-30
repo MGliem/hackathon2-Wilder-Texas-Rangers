@@ -67,4 +67,17 @@ class ProjectRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function findOnelikeApsidian(): ?Project
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.matchings', 'pm')
+            ->Where('pm.apsidianLike = true')
+            ->andWhere('pm.masterChief is null')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
