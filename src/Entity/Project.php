@@ -44,6 +44,9 @@ class Project
         $this->matchings = new ArrayCollection();
     }
 
+    #[ORM\Column(type: 'boolean')]
+    private $hasSuperProject;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,6 +162,18 @@ class Project
                 $matching->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isHasSuperProject(): ?bool
+    {
+        return $this->hasSuperProject;
+    }
+
+    public function setHasSuperProject(bool $hasSuperProject): self
+    {
+        $this->hasSuperProject = $hasSuperProject;
 
         return $this;
     }

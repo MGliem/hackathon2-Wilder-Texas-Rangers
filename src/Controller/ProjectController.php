@@ -3,15 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\User;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
-#[Route('/project', name:'project_')]
+#[Route('/project', name: 'project_')]
 class ProjectController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -24,14 +27,23 @@ class ProjectController extends AbstractController
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_MASTERCHIEF')]
-    public function new(Request $request, ProjectRepository $projectRepository): Response
+    public function new(Request $request, ProjectRepository $projectRepository, ManagerRegistry $doctrine): Response
     {
+        /** @var User */
+        $user= $this->getUser();
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
+        $entityManager = $doctrine->getManager();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($project->isHasSuperProject()) {
+                $user->setPoints($user->getPoints() - 10);
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }
             $projectRepository->add($project, true);
+
 
             return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -73,12 +85,10 @@ class ProjectController extends AbstractController
     #[IsGranted('ROLE_MASTERCHIEF')]
     public function delete(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $project->getId(), $request->request->get('_token'))) {
             $projectRepository->remove($project, true);
         }
 
         return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
 }

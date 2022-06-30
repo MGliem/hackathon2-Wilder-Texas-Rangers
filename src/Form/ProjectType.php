@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,6 +20,10 @@ class ProjectType extends AbstractType
             ->add('picture1')
             ->add('image2')
             ->add('image3')
+            ->add('hasSuperProject', CheckboxType::class, [
+                'label'    => 'Is a super project',
+                'required' => false,
+            ])
         ;
     }
 
