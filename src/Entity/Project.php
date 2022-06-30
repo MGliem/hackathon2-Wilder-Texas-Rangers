@@ -37,6 +37,9 @@ class Project
     #[ORM\ManyToOne(targetEntity: Matching::class, inversedBy: 'project')]
     private $matching;
 
+    #[ORM\Column(type: 'boolean')]
+    private $hasSuperProject;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +137,18 @@ class Project
     public function setMatching(?Matching $matching): self
     {
         $this->matching = $matching;
+
+        return $this;
+    }
+
+    public function isHasSuperProject(): ?bool
+    {
+        return $this->hasSuperProject;
+    }
+
+    public function setHasSuperProject(bool $hasSuperProject): self
+    {
+        $this->hasSuperProject = $hasSuperProject;
 
         return $this;
     }

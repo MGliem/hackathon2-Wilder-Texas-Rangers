@@ -19,6 +19,7 @@ class ProjectType extends AbstractType
             ->add('picture1')
             ->add('image2')
             ->add('image3')
+            ->add()
         ;
     }
 

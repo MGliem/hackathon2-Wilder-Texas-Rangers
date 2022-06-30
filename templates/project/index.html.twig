@@ -12,14 +12,12 @@
 {% block body %}
     <div class="d-flex justify-content-center">
         <h1 class="text-secondary title-size mt-5">
-            Project index   
-                
+            Project index
         </h1>
     </div>
     {% if is_granted('ROLE_MASTERCHIEF') %}
         <a class="text-decoration-none ms-4" href="{{ path('project_new') }}">
-            Create new
-                    
+            Create new  
         </a>
     {% endif %}
 
