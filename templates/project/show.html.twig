@@ -2,10 +2,10 @@
 
 {% block title %}Project{% endblock %}
 
-{% block stylesheets %} {{ encore_entry_link_tags('projectdetails') }} {% endblock %}
+{# {% block stylesheets %} {{ encore_entry_link_tags('projectdetails') }} {% endblock %} #}
 
 {% block body %}
-<div class="details container w-50 d-flex flex-column align-items-center">
+<div class="details d-flex flex-column align-items-center m-5">
  <img src="{{ project.picture1 }}"/>
     <h1 class="details-name text-center bg-light p-3 m-0">{{ project.name }}</h1>
         <h2 class="fs-5 details-team">{{ project.team }}</h2>
