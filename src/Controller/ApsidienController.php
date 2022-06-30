@@ -22,9 +22,9 @@ class ApsidienController extends AbstractController
     #[Route('/adopt', name: 'adopt')]
     public function openProjects(ProjectRepository $projectRepository): Response
     {
-        $projects = $projectRepository->findBy(["status" => "open"]);
+        $project = $projectRepository->findOneBy(["status" => "open"]);
         return $this->render('apsidien/adopt.html.twig', [
-            'projects' => $projects,
+            'project' => $project,
         ]);
     }
 }

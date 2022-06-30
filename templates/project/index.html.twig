@@ -4,12 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Project index</h1>
+	<h1 class="text-center mt-5">Project index</h1>
 
-	<table class="table">
+	<table class="table container">
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Name</th>
 				<th>Team</th>
 				<th>Picture1</th>
@@ -21,16 +20,15 @@
 		<tbody>
 			{% for project in projects %}
 				<tr>
-					<td>{{ project.id }}</td>
 					<td>{{ project.name }}</td>
 					<td>{{ project.team }}</td>
 					<td>{{ project.picture1 }}</td>
 					<td>{{ project.image2 }}</td>
 					<td>{{ project.image3 }}</td>
 					<td>
-						<a href="{{ path('project_show', {'id': project.id}) }}">show</a>
+						<a class="btn btn-md mt-1 btn-outline-secondary" href="{{ path('project_show', {'id': project.id}) }}">Show</a>
 						{% if is_granted('ROLE_MASTERCHIEF') %}
-							<a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+							<a href="{{ path('project_edit', {'id': project.id}) }}">Edit</a>
 						{% endif %}
 					</td>
 				</tr>
