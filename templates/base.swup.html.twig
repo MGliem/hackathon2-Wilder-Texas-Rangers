@@ -15,7 +15,9 @@
         {{ encore_entry_script_tags('app') }}
         {% block javascripts %}{% endblock %}
     </head>
-    <body {{ stimulus_controller('symfony/ux-swup/swup') }}>
+    <body {{ stimulus_controller('symfony/ux-swup/swup', {
+            animationSelector: '[class*="transition-"]',
+        }) }}>
         {% block navbar %}
             {% include "component/_navbar.html.twig" %}
         {% endblock %}
