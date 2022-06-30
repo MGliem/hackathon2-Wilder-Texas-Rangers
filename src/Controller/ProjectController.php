@@ -23,7 +23,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_MASTERCHIEF', 'ROLE_ADMIN')]
+    #[IsGranted('ROLE_MASTERCHIEF')]
     public function new(Request $request, ProjectRepository $projectRepository): Response
     {
         $project = new Project();

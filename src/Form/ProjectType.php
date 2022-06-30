@@ -15,6 +15,7 @@ class ProjectType extends AbstractType
             ->add('name')
             ->add('team')
             ->add('content')
+            ->add('status')
             ->add('picture1')
             ->add('image2')
             ->add('image3')
