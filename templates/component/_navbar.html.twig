@@ -1,12 +1,21 @@
 <nav class="navbar navbar-light bg-light py-0">
-  <div class="w-100 h-100 d-flex">
-    <a class="navbar-brand mx-0 py-0 align-items-center d-flex" href="#">
-      <img class="w-fit" src="{{ asset('build/images/favicon.png') }}" alt="apsidelogo">
-    </a>
-    <div class="links align-items-center d-flex justify-content-end flex-grow-1 border-bottom border-3 ps-0 border-primary">
-    <a href="#" class="text-decoration-none mx-3 fs-4"><i class=" px-2 fs-4 bi-house-fill"></i>Home</a>
-    <a href="#" class="text-decoration-none mx-3 fs-4"><i class=" px-2 fs-4 bi bi-folder-fill"></i>Projets</a>
-    </div>
-  </div>
+	<div class="w-100 h-100 d-flex">
+		<a class="navbar-brand mx-0 py-0 align-items-center d-flex" href="#">
+			<img class="w-fit" src="{{ asset('build/images/favicon.png') }}" alt="apsidelogo">
+		</a>
+		<div class="links align-items-center d-flex justify-content-end flex-grow-1 border-bottom border-3 ps-0 border-primary">
+			<a href="/home" class="text-decoration-none mx-3 fs-4">
+				<i class=" px-2 fs-4 bi-house-fill"></i>Home</a>
+			<a href="/project" class="text-decoration-none mx-3 fs-4">
+				<i class=" px-2 fs-4 bi bi-folder-fill"></i>Projets</a>
+			<a href="/profile" class="text-decoration-none mx-3 fs-4">
+				<i class="fa-solid fa-address-card"></i>
+				Profile</a>
+			{% if is_granted(ROLE_MASTERCHIEF) %}
+				<a href="/profile" class="text-decoration-none mx-3 fs-4">
+					<i class="fa-solid fa-address-card"></i>
+					Profile</a>
+			{% endif %}
+		</div>
+	</div>
 </nav>
-  
