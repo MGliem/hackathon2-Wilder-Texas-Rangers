@@ -38,7 +38,7 @@ class UserFixtures extends Fixture
             $user->setSkills(['Smart', 'Punctual', 'Strong']);
             $user->setAgency($faker->city());
             $user->setBio($faker->paragraph());
-            $user->setPhoto('assets/image/photo.jpg');
+            $user->setPhoto('assets/images/photo.jpg');
             $user->setPoints($faker->numberBetween(1, 200));
 
             $manager->persist($user);
@@ -59,7 +59,7 @@ class UserFixtures extends Fixture
             $user->setSkills(['Smart', 'Punctual', 'Strong']);
             $user->setAgency($faker->city());
             $user->setBio($faker->sentence());
-            $user->setPhoto('assets/image/masterchief.jpg');
+            $user->setPhoto('images/masterchief.jpg');
             $user->setPoints($faker->numberBetween(1, 200));
 
             $manager->persist($user);
@@ -80,7 +80,7 @@ class UserFixtures extends Fixture
             $user->setSkills(['Smart', 'Punctual', 'Strong']);
             $user->setAgency($faker->city());
             $user->setBio($faker->sentence());
-            $user->setPhoto('assets/image/masterchief.jpg');
+            $user->setPhoto('assets/images/masterchief.jpg');
             $user->setPoints($faker->numberBetween(1, 200));
 
             $manager->persist($user);
