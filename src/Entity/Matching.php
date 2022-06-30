@@ -18,16 +18,18 @@ class Matching
     #[ORM\OneToMany(mappedBy: 'matching', targetEntity: User::class)]
     private $apsidian;
 
-    #[ORM\OneToMany(mappedBy: 'matching', targetEntity: User::class)]
-    private $masterChief;
-
     #[ORM\OneToMany(mappedBy: 'matching', targetEntity: Project::class)]
     private $project;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $masterChiefStatus;
+
+    #[ORM\Column(type: 'integer')]
+    private $liked;
 
     public function __construct()
     {
         $this->apsidian = new ArrayCollection();
-        $this->masterChief = new ArrayCollection();
         $this->project = new ArrayCollection();
     }
 
@@ -67,36 +69,6 @@ class Matching
     }
 
     /**
-     * @return Collection<int, User>
-     */
-    public function getMasterChief(): Collection
-    {
-        return $this->masterChief;
-    }
-
-    public function addMasterChief(User $masterChief): self
-    {
-        if (!$this->masterChief->contains($masterChief)) {
-            $this->masterChief[] = $masterChief;
-            $masterChief->setMatching($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMasterChief(User $masterChief): self
-    {
-        if ($this->masterChief->removeElement($masterChief)) {
-            // set the owning side to null (unless already changed)
-            if ($masterChief->getMatching() === $this) {
-                $masterChief->setMatching(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Project>
      */
     public function getProject(): Collection
@@ -122,6 +94,18 @@ class Matching
                 $project->setMatching(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLiked(): ?int
+    {
+        return $this->liked;
+    }
+
+    public function setLiked(int $liked): self
+    {
+        $this->liked = $liked;
 
         return $this;
     }
