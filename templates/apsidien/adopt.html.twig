@@ -11,14 +11,14 @@
 {% endblock %}
 
 {% block body %}
-	<section class="swipe py-5 container" id="swup">
+	<section class="home-apsidien py-5 container">
 		<div class="title mx-auto w-fit mb-5">
 			<p class="title-before">Apsidian,</p>
 			<h1 class="text-secondary title-size w-fit mt-0">Find your ❤️ project</h1>
 		</div>
 		{% if project is not null %}
 			<div class="col-lg-4 pt-5 mx-auto">
-				<div class="card col-lg-12 my-4" data-aos="fade-left">
+				<div class="card col-lg-12 my-4 transition-right" id="swup">
 					<div class="card-body d-flex flex-column justify-content-between">
 						<div class="d-flex flex-column">
 							<div class="title mx-auto w-fit mb-5">
@@ -52,4 +52,18 @@
 			<h2 class="text-primary mt-5 pt-5 w-fit mx-auto">Unfortunately, we have no more matches to offer!</h2>
 		{% endif %}
 	</section>
+	<script>
+		document.querySelector('.accept').onclick = changeAnimationRight;
+		document.querySelector('.reject').onclick = changeAnimationLeft;
+		function changeAnimationLeft()
+		{
+			document.getElementById('swup').classList.remove('transition-right');
+			document.getElementById('swup').classList.add('transition-left');
+		}
+		function changeAnimationRight()
+		{
+			document.getElementById('swup').classList.remove('transition-left');
+			document.getElementById('swup').classList.add('transition-right');
+		}
+	</script>
 {% endblock %}
