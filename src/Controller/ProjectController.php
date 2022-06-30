@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_MASTERCHIEF', 'ROLE_ADMIN')]
     public function new(Request $request, ProjectRepository $projectRepository): Response
     {
         $project = new Project();
@@ -49,6 +51,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_MASTERCHIEF', 'ROLE_ADMIN')]
     public function edit(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
         $form = $this->createForm(ProjectType::class, $project);
@@ -67,6 +70,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[IsGranted('ROLE_MASTERCHIEF', 'ROLE_ADMIN')]
     public function delete(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
