@@ -51,11 +51,12 @@ html {
     height: calc(100vh - $navbarHeight);
     top: $navbarHeight;
     min-width: 240px;
+    max-width: 240px;
     z-index: 1001;
 }
 
 .navbar-brand img {
-    max-width: 237px;
+    width: 237px;
 }
 
 footer {
