@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Entity\User;
 use App\Form\ProjectType;
+use App\Form\SearchType;
 use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,10 +19,21 @@ use Doctrine\Persistence\ManagerRegistry;
 class ProjectController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(ProjectRepository $projectRepository): Response
+    public function index(Request $request, ProjectRepository $projectRepository): Response
     {
-        return $this->render('project/index.html.twig', [
-            'projects' => $projectRepository->findAll(),
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $projects = $projectRepository->findLike($search);
+        } else {
+            $projects = $projectRepository->findAll();
+        }
+
+        return $this->renderForm('project/index.html.twig', [
+            'form' => $form,
+            'projects' => $projects,
         ]);
     }
 
