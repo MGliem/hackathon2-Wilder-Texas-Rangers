@@ -65,6 +65,26 @@ class UserFixtures extends Fixture
             $manager->persist($user);
         }
 
+        $faker = Factory::create();
+        for ($i = 0; $i < 2; $i++) {
+            $user = new User;
+            $user->setEmail('admin' . $i . '@apside.fr');
+            $user->setRoles(['ROLE_ADMIN']);
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $user,
+                'halo'
+            );
+            $user->setPassword($hashedPassword);
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->lastName());
+            $user->setSkills(['Smart', 'Punctual', 'Strong']);
+            $user->setAgency($faker->city());
+            $user->setBio($faker->sentence());
+            $user->setPhoto('assets/image/masterchief.jpg');
+            $user->setPoints($faker->numberBetween(1, 200));
+
+            $manager->persist($user);
+        }
 
         $manager->flush();
     }
