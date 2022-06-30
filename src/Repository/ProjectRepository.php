@@ -54,13 +54,17 @@ class ProjectRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Project
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneNotlikeApsidian($user): ?Project
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.matchings', 'pm')
+            ->Where('pm.apsidian != :user')
+            ->orWhere('pm.apsidian is null')
+            ->setParameter('user', $user)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

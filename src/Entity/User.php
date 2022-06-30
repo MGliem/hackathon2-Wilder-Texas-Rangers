@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -47,8 +49,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer', nullable: true)]
     private $points;
 
-    #[ORM\ManyToOne(targetEntity: Matching::class, inversedBy: 'apsidian')]
-    private $matching;
+    #[ORM\OneToMany(mappedBy: 'apsidian', targetEntity: Matching::class)]
+    private $apsidianMatchs;
+
+    #[ORM\OneToMany(mappedBy: 'masterChief', targetEntity: Matching::class)]
+    private $masterMatchs;
+
+    public function __construct()
+    {
+        $this->apsidianMatchs = new ArrayCollection();
+        $this->masterMatchs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -204,14 +215,62 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getMatching(): ?Matching
+    /**
+     * @return Collection<int, Matching>
+     */
+    public function getApsidianMatchs(): Collection
     {
-        return $this->matching;
+        return $this->apsidianMatchs;
     }
 
-    public function setMatching(?Matching $matching): self
+    public function addApsidianMatch(Matching $apsidianMatch): self
     {
-        $this->matching = $matching;
+        if (!$this->apsidianMatchs->contains($apsidianMatch)) {
+            $this->apsidianMatchs[] = $apsidianMatch;
+            $apsidianMatch->setApsidian($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApsidianMatch(Matching $apsidianMatch): self
+    {
+        if ($this->apsidianMatchs->removeElement($apsidianMatch)) {
+            // set the owning side to null (unless already changed)
+            if ($apsidianMatch->getApsidian() === $this) {
+                $apsidianMatch->setApsidian(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Matching>
+     */
+    public function getMasterMatchs(): Collection
+    {
+        return $this->masterMatchs;
+    }
+
+    public function addMasterMatch(Matching $masterMatch): self
+    {
+        if (!$this->masterMatchs->contains($masterMatch)) {
+            $this->masterMatchs[] = $masterMatch;
+            $masterMatch->setMasterChief($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMasterMatch(Matching $masterMatch): self
+    {
+        if ($this->masterMatchs->removeElement($masterMatch)) {
+            // set the owning side to null (unless already changed)
+            if ($masterMatch->getMasterChief() === $this) {
+                $masterMatch->setMasterChief(null);
+            }
+        }
 
         return $this;
     }

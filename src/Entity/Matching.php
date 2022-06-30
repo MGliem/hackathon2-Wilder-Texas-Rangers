@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\MatchingRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MatchingRepository::class)]
@@ -15,94 +13,69 @@ class Matching
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToMany(mappedBy: 'matching', targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'apsidianMatchs')]
+    #[ORM\JoinColumn(nullable: false)]
     private $apsidian;
 
-    #[ORM\OneToMany(mappedBy: 'matching', targetEntity: Project::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'masterMatchs')]
+    private $masterChief;
+
+    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'matchings')]
+    #[ORM\JoinColumn(nullable: false)]
     private $project;
 
-    #[ORM\Column(type: 'integer')]
-    private $liked;
-
-    public function __construct()
-    {
-        $this->apsidian = new ArrayCollection();
-        $this->project = new ArrayCollection();
-    }
+    #[ORM\Column(type: 'boolean')]
+    private $apsidianLike;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getApsidian(): Collection
+    public function getApsidian(): ?User
     {
         return $this->apsidian;
     }
 
-    public function addApsidian(User $apsidian): self
+    public function setApsidian(?User $apsidian): self
     {
-        if (!$this->apsidian->contains($apsidian)) {
-            $this->apsidian[] = $apsidian;
-            $apsidian->setMatching($this);
-        }
+        $this->apsidian = $apsidian;
 
         return $this;
     }
 
-    public function removeApsidian(User $apsidian): self
+    public function getMasterChief(): ?User
     {
-        if ($this->apsidian->removeElement($apsidian)) {
-            // set the owning side to null (unless already changed)
-            if ($apsidian->getMatching() === $this) {
-                $apsidian->setMatching(null);
-            }
-        }
+        return $this->masterChief;
+    }
+
+    public function setMasterChief(?User $masterChief): self
+    {
+        $this->masterChief = $masterChief;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Project>
-     */
-    public function getProject(): Collection
+    public function getProject(): ?Project
     {
         return $this->project;
     }
 
-    public function addProject(Project $project): self
+    public function setProject(?Project $project): self
     {
-        if (!$this->project->contains($project)) {
-            $this->project[] = $project;
-            $project->setMatching($this);
-        }
+        $this->project = $project;
 
         return $this;
     }
 
-    public function removeProject(Project $project): self
+    public function isApsidianLike(): ?bool
     {
-        if ($this->project->removeElement($project)) {
-            // set the owning side to null (unless already changed)
-            if ($project->getMatching() === $this) {
-                $project->setMatching(null);
-            }
-        }
-
-        return $this;
+        return $this->apsidianLike;
     }
 
-    public function getLiked(): ?int
+    public function setApsidianLike(bool $apsidianLike): self
     {
-        return $this->liked;
-    }
-
-    public function setLiked(int $liked): self
-    {
-        $this->liked = $liked;
+        $this->apsidianLike = $apsidianLike;
 
         return $this;
     }
