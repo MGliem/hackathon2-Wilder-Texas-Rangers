@@ -90,3 +90,35 @@ footer a {
 footer a:hover {
     color:#F0F0F0;
 }
+
+.transition-right {
+    opacity: 1;
+    transition: 500ms;
+    transform: translateX(0);
+    transform-origin: left;
+}
+
+html.is-animating .transition-right {
+    opacity: 0;
+}
+
+html.is-leaving .transition-right {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.transition-left {
+    opacity: 1;
+    transition: 500ms;
+    transform: translateX(0);
+    transform-origin: right;
+}
+
+html.is-animating .transition-left {
+    opacity: 0;
+}
+
+html.is-leaving .transition-left {
+    opacity: 0;
+    transform: translateX(-100%);
+}
