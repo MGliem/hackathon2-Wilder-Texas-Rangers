@@ -21,6 +21,25 @@ html {
     scroll-behavior: smooth;
 }
 
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; /* Height of navbar */
+    width: 240px;
+    z-index: 600;
+  }
+
+h1 {
+    font-size: 54px;
+    font-weight: 900;
+    color: $secondary; }
+
+.soustitre{
+    font-size: 55px;
+}
+    
 .w-fit {
     width: fit-content;
 }
@@ -51,11 +70,12 @@ html {
     height: calc(100vh - $navbarHeight);
     top: $navbarHeight;
     min-width: 240px;
+    max-width: 240px;
     z-index: 1001;
 }
 
 .navbar-brand img {
-    max-width: 237px;
+    width: 237px;
 }
 
 footer {
@@ -68,4 +88,36 @@ footer a {
 
 footer a:hover {
     color:#F0F0F0;
+}
+
+.transition-right {
+    opacity: 1;
+    transition: 500ms;
+    transform: translateX(0);
+    transform-origin: left;
+}
+
+html.is-animating .transition-right {
+    opacity: 0;
+}
+
+html.is-leaving .transition-right {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.transition-left {
+    opacity: 1;
+    transition: 500ms;
+    transform: translateX(0);
+    transform-origin: right;
+}
+
+html.is-animating .transition-left {
+    opacity: 0;
+}
+
+html.is-leaving .transition-left {
+    opacity: 0;
+    transform: translateX(-100%);
 }

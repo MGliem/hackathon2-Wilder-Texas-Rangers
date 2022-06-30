@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
@@ -30,6 +32,20 @@ class Project
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image3;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $status;
+
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Matching::class)]
+    private $matchings;
+
+    public function __construct()
+    {
+        $this->matchings = new ArrayCollection();
+    }
+
+    #[ORM\Column(type: 'boolean')]
+    private $hasSuperProject;
 
     public function getId(): ?int
     {
@@ -104,6 +120,60 @@ class Project
     public function setImage3(?string $image3): self
     {
         $this->image3 = $image3;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Matching>
+     */
+    public function getMatchings(): Collection
+    {
+        return $this->matchings;
+    }
+
+    public function addMatching(Matching $matching): self
+    {
+        if (!$this->matchings->contains($matching)) {
+            $this->matchings[] = $matching;
+            $matching->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatching(Matching $matching): self
+    {
+        if ($this->matchings->removeElement($matching)) {
+            // set the owning side to null (unless already changed)
+            if ($matching->getProject() === $this) {
+                $matching->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isHasSuperProject(): ?bool
+    {
+        return $this->hasSuperProject;
+    }
+
+    public function setHasSuperProject(bool $hasSuperProject): self
+    {
+        $this->hasSuperProject = $hasSuperProject;
 
         return $this;
     }

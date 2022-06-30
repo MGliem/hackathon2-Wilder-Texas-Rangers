@@ -3,9 +3,8 @@
 {% block title %}New Project{% endblock %}
 
 {% block body %}
-    <h1>Create new Project</h1>
-
+    <h1 class="text-center mt-5">Create new Project</h1>
+<div class="m-5">
     {{ include('project/_form.html.twig') }}
-
-    <a href="{{ path('app_project_index') }}">back to list</a>
+</div>
 {% endblock %}

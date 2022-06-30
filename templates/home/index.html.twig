@@ -4,24 +4,35 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center text-primary mt-5 border-2 border-end-0 border-start-0 border border-primary p-2">Welcome to: Adopt an Apsidian.e</h1>
-
-	<div class="container-fluid">
-		<div class="row mt-5 mx-auto">
-			<div class="col">
-				<h2>Find a tech:
-					<i class="bi bi-keyboard"></i>
-				</h2>
-				<img src="{{ asset('build/images/dev.jpg') }}" alt="a" class="w-75 h-75 m-5" 
-                style="box-shadow: 60px -16px #183650; object-fit: cover;">
-			</div>
-
-			<div class="col">
-				<h2>Find a project:
-					<i class="bi bi-folder"></i>
-				</h2><img src="{{ asset('build/images/project.jpg') }}" alt="a" class="w-75 m-5" 
-                style="box-shadow: 60px -16px #183650; object-fit: cover;">
+	<h1 class="text-center text-primary mt-5 p-2">Welcome to: Adopt an Apsidian</h1>
+	{% if is_granted('ROLE_MASTERCHIEF') %}
+		<div class="container-fluid">
+			<div class="row mt-5 mx-auto">
+				<div class="col">
+					<h2 class="text-decoration-none">Find an apsidian:
+						<i class="bi bi-keyboard"></i>
+					</h2>
+					<a href="{{ path('manager_adopt') }}">
+						<img data-aos="flip-left" data-aos-duration="1500" src="{{ asset('build/images/dev.jpg') }}" alt="a" class="w-75 h-75 m-5" style="box-shadow: 60px -16px #183650; object-fit: cover;">
+					</a>
+				</div>
+				<div class="col">
+					<h2>Find a project:
+						<i class="bi bi-folder"></i>
+					</h2>
+					<a href="{{ path('project_index') }}">
+						<img data-aos="flip-left" data-aos-duration="1500" src="{{ asset('build/images/project.jpg') }}" alt="a" class="w-75 m-5" style="box-shadow: 60px -16px #183650; object-fit: cover;">
+					</a>
+				</div>
 			</div>
 		</div>
+	{% else %}
+	<div class="mx-auto mt-5">
+		<h2>Match a project:
+			<i class="bi bi-folder"></i>
+		</h2>
+		<a href="{{ path('apsidien_adopt') }}">
+			<img data-aos="flip-left" data-aos-duration="1500" src="{{ asset('build/images/project.jpg') }}" alt="a" class="m-5" style="box-shadow: 60px -16px #183650; object-fit: cover;">
+		</a>
 	</div>
-{% endblock %}
+{% endif %}{% endblock %}

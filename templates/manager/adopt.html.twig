@@ -1,0 +1,69 @@
+{% extends 'base.swup.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| Apsidien - Adopt a project
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('apsidienStyle') }}
+{% endblock %}
+
+{% block body %}
+	<section class="home-apsidien py-5 container">
+		<div class="title mx-auto w-fit mb-5">
+			<p class="title-before">Master Chief,</p>
+			<h1 class="text-secondary title-size w-fit mt-0">Find your ❤️ Apsidian</h1>
+		</div>
+		{% if m is not null %}
+			<div class="col-lg-4 pt-5 mx-auto">
+				<div class="card col-lg-12 my-4 transition-right" id="swup">
+					<div class="card-body d-flex flex-column justify-content-between">
+						<div class="d-flex flex-column">
+							<div class="title mx-auto w-fit mb-5">
+								<p class="title-before text-secondary fs-5">Team
+									{{ m.apsidian.agency|u.truncate('10', '...') }}</p>
+								<h2 class="card-title text-center text-primary fs-3 fw-bold title-size">{{ m.apsidian.firstName }} {{ m.apsidian.lastName }}</h2>
+							</div>
+							<div class="position-relative">
+								<p class="card-text px-5">Points: {{ m.apsidian.points }}
+								<br>
+								On project: {{ m.project.name }}
+								</p>
+								<div class="square-card-text"></div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-center gap-3">
+							<a href="#" class="btn btn-secondary w-50">See More</a>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-center gap-5">
+					<a class="reject" href="{{ path('manager_adopt_reject', {'mat': m.id}) }}">
+						<i class="rejected bi bi-x-square text-danger"></i>
+					</a>
+					<a class="accept" href="{{ path('manager_adopt_add', {'mat': m.id}) }}">
+						<i class="accepted bi bi-check-square text-success"></i>
+					</a>
+				</div>
+			</div>
+		{% else %}
+			<h2 class="text-primary mt-5 pt-5 w-fit mx-auto">Unfortunately, we have no more matches to offer!</h2>
+		{% endif %}
+	</section>
+	<script>
+		document.querySelector('.accept').onclick = changeAnimationRight;
+		document.querySelector('.reject').onclick = changeAnimationLeft;
+		function changeAnimationLeft()
+		{
+			document.getElementById('swup').classList.remove('transition-right');
+			document.getElementById('swup').classList.add('transition-left');
+		}
+		function changeAnimationRight()
+		{
+			document.getElementById('swup').classList.remove('transition-left');
+			document.getElementById('swup').classList.add('transition-right');
+		}
+	</script>
+{% endblock %}

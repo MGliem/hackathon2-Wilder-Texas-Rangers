@@ -3,35 +3,61 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\User;
 use App\Form\ProjectType;
+use App\Form\SearchType;
 use App\Repository\ProjectRepository;
+use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
-#[Route('/project', name:'project_')]
+#[Route('/project', name: 'project_')]
 class ProjectController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(ProjectRepository $projectRepository): Response
+    public function index(Request $request, ProjectRepository $projectRepository): Response
     {
-        return $this->render('project/index.html.twig', [
-            'projects' => $projectRepository->findAll(),
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $projects = $projectRepository->findLike($search);
+        } else {
+            $projects = $projectRepository->findAll();
+        }
+
+        return $this->renderForm('project/index.html.twig', [
+            'form' => $form,
+            'projects' => $projects,
         ]);
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProjectRepository $projectRepository): Response
+    #[IsGranted('ROLE_MASTERCHIEF')]
+    public function new(Request $request, ProjectRepository $projectRepository, ManagerRegistry $doctrine): Response
     {
+        /** @var User */
+        $user= $this->getUser();
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
+        $entityManager = $doctrine->getManager();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($project->isHasSuperProject()) {
+                $user->setPoints($user->getPoints() - 10);
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }
             $projectRepository->add($project, true);
 
-            return $this->redirectToRoute('roject_index', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('project/new.html.twig', [
@@ -49,6 +75,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_MASTERCHIEF')]
     public function edit(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
         $form = $this->createForm(ProjectType::class, $project);
@@ -67,9 +94,10 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[IsGranted('ROLE_MASTERCHIEF')]
     public function delete(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $project->getId(), $request->request->get('_token'))) {
             $projectRepository->remove($project, true);
         }
 
