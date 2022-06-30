@@ -37,7 +37,7 @@ class UserFixtures extends Fixture
             $user->setLastName($faker->lastName());
             $user->setSkills(['Smart', 'Punctual', 'Strong']);
             $user->setAgency($faker->city());
-            $user->setBio($faker->paragraph());
+            $user->setBio($faker->sentence());
             $user->setPhoto('assets/images/photo.jpg');
             $user->setPoints($faker->numberBetween(1, 200));
 
