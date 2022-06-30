@@ -47,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer', nullable: true)]
     private $points;
 
+    #[ORM\ManyToOne(targetEntity: Matching::class, inversedBy: 'apsidian')]
+    private $matching;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -197,6 +200,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPoints(?int $points): self
     {
         $this->points = $points;
+
+        return $this;
+    }
+
+    public function getMatching(): ?Matching
+    {
+        return $this->matching;
+    }
+
+    public function setMatching(?Matching $matching): self
+    {
+        $this->matching = $matching;
 
         return $this;
     }
