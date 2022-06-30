@@ -1,0 +1,32 @@
+{% extends 'baseConnect.html.twig' %}
+
+
+{% block body %}
+	{% if error %}
+		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<h1 class="text-center text-primary mt-5 border-2 border-end-0 border-start-0 border border-primary p-2">Connection</h1>
+
+	<form class="w-50 mx-auto my-5" action="{{ path('login') }}" method="post">
+		<div class="mb-3">
+			<label for="username" class="form-label">
+				<i class="bi bi-envelope"></i>
+				Email:</label>
+			<input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}"/>
+			<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+		</div>
+		<div class="mb-3">
+
+			<label for="password" class="form-label">
+				<i class="bi bi-key"></i>
+				Password:</label>
+			<input class="form-control" type="password" id="password" name="_password"/>
+		</div>
+		<div class="mb-3">
+
+			<input type="hidden" name="_target_path" value="/home"/>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		</div>
+		<button type="submit" class="btn btn-lg mt-1 btn-secondary">Login</button>
+	</form>
+{% endblock %}
