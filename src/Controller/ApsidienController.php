@@ -18,4 +18,13 @@ class ApsidienController extends AbstractController
             'projects' => $projects,
         ]);
     }
+
+    #[Route('/adopt', name: 'adopt')]
+    public function openProjects(ProjectRepository $projectRepository): Response
+    {
+        $projects = $projectRepository->findBy(["status" => "open"]);
+        return $this->render('apsidien/adopt.html.twig', [
+            'projects' => $projects,
+        ]);
+    }
 }

@@ -31,6 +31,9 @@ class Project
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image3;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Project
     public function setImage3(?string $image3): self
     {
         $this->image3 = $image3;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
