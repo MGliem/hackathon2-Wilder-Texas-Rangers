@@ -75,4 +75,6 @@ class ProjectController extends AbstractController
 
         return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }
