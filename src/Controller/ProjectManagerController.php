@@ -14,15 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/manager', name: 'manager_')]
 class ProjectManagerController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function indexManager(UserRepository $userRepository): Response
-    {
-        $users = $userRepository->findAll();
-        return $this->render('manager/home/index.html.twig', [
-            'users' => $users,
-        ]);
-    }
-
     #[Route('/adopt', name: 'adopt')]
     public function openUsers(MatchingRepository $matchingRepository): Response
     {
