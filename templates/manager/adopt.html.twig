@@ -39,11 +39,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="d-flex justify-content-center gap-5">
-					<a class="reject" href="{{ path('manager_adopt_reject', {'mat': m.id}) }}">
+				<div class="d-flex justify-content-center gap-5" id="swup2">
+					<a onclick="document.getElementById('swup').classList.remove('transition-right');document.getElementById('swup').classList.add('transition-left');" href="{{ path('manager_adopt_reject', {'mat': m.id}) }}">
 						<i class="rejected bi bi-x-square text-danger"></i>
 					</a>
-					<a class="accept" href="{{ path('manager_adopt_add', {'mat': m.id}) }}">
+					<a onclick="document.getElementById('swup').classList.remove('transition-left');document.getElementById('swup').classList.add('transition-right');" href="{{ path('manager_adopt_add', {'mat': m.id}) }}">
 						<i class="accepted bi bi-check-square text-success"></i>
 					</a>
 				</div>
@@ -52,18 +52,4 @@
 			<h2 class="text-primary mt-5 pt-5 w-fit mx-auto">Unfortunately, we have no more matches to offer!</h2>
 		{% endif %}
 	</section>
-	<script>
-		document.querySelector('.accept').onclick = changeAnimationRight;
-		document.querySelector('.reject').onclick = changeAnimationLeft;
-		function changeAnimationLeft()
-		{
-			document.getElementById('swup').classList.remove('transition-right');
-			document.getElementById('swup').classList.add('transition-left');
-		}
-		function changeAnimationRight()
-		{
-			document.getElementById('swup').classList.remove('transition-left');
-			document.getElementById('swup').classList.add('transition-right');
-		}
-	</script>
 {% endblock %}
