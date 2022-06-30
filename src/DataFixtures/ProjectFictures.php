@@ -21,6 +21,7 @@ class ProjectFictures extends Fixture
         $project->setImage2('https://picsum.photos/400/300');
         $project->setImage3('https://picsum.photos/400/300');
         $project->setStatus('open');
+        $project->setHasSuperProject(false);
 
         $manager->persist($project);
         }

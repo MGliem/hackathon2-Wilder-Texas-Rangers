@@ -2,6 +2,12 @@
 
 {% block title %}
     Project index
+                            
+                        
+                    
+                
+            
+        
     
 {% endblock %}
 
@@ -12,13 +18,85 @@
 {% block body %}
     <div class="d-flex justify-content-center">
         <h1 class="text-secondary title-size mt-5">
-            Project index   
-                
+            Project index
+                                                                                
+                                                                    
+                                                        
+                                            
+                                
+                    
         </h1>
     </div>
 
     <section class="home-apsidien container-fluid py-5">
+        <h2 class="d-flex justify-content-center text-primary title-size mt-5">
+            Super Project
+        </h2>
         <div class="title mx-auto w-fit mb-5"></div>
+        <div class="row pt-5">
+
+            {% for project in projects %}
+                {% if project.hasSuperProject %}
+                    <div class="col-lg-4">
+                        <div class="card col-lg-12 my-4">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <div class="title mx-auto w-fit mb-5">
+                                        <p class="title-before text-secondary fs-5">
+                                            Team 
+                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                
+                                                                                                                                                                        
+                                                                                                                                    
+                                                                                        
+                                            {{ project.team|u.truncate('10', '...') }}
+                                        </p>
+                                        <h2 class="card-title text-center text-primary fs-3 fw-bold title-size">
+                                            {{ project.name|u.truncate(20, '...') }}
+                                        </h2>
+                                    </div>
+                                    <div class="position-relative">
+                                        <p class="card-text px-5">
+                                            {{ project.content|u.truncate(250, '...') }}
+                                        </p>
+                                        <div class="square-card-text"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <a href="{{ path('project_show', { 'id': project.id}) }}" class="btn btn-secondary w-50">
+                                        See More
+                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                            
+                                                                                                                                                                                        
+                                                                                                                                                    
+                                                                                                                    
+                                                                            
+                                    </a>
+                                    {% if is_granted('ROLE_MASTERCHIEF') %}
+                                        <a href="{{ path('project_edit', { 'id': project.id}) }}" class="btn btn-primary w-50">
+                                            Edit
+                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                            
+                                                                                                                                                                    
+                                                                                                                                
+                                                                                    
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+        <h2 class="d-flex justify-content-center text-primary title-size mt-5">
+            Project
+        </h2>
         <div class="row pt-5">
             {% for project in projects %}
                 <div class="col-lg-4">
@@ -28,6 +106,12 @@
                                 <div class="title mx-auto w-fit mb-5">
                                     <p class="title-before text-secondary fs-5">
                                         Team 
+                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                
+                                                                                                                                                                                                        
+                                                                                                                                                                
+                                                                                                                        
+                                                                                
                                         {{ project.team|u.truncate('10', '...') }}
                                     </p>
                                     <h2 class="card-title text-center text-primary fs-3 fw-bold title-size">
@@ -44,10 +128,22 @@
                             <div class="d-flex justify-content-center gap-3">
                                 <a href="{{ path('project_show', { 'id': project.id}) }}" class="btn btn-secondary w-50">
                                     See More
+                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                    
+                                                                                                                                                                                
+                                                                                                                                            
+                                                                                                        
+                                                                    
                                 </a>
                                 {% if is_granted('ROLE_MASTERCHIEF') %}
                                     <a href="{{ path('project_edit', { 'id': project.id}) }}" class="btn btn-primary w-50">
                                         Edit
+                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                            
+                                                                                                                                                                                                    
+                                                                                                                                                            
+                                                                                                                    
+                                                                            
                                     </a>
                                 {% endif %}
                             </div>
