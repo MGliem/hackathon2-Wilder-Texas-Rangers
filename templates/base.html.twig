@@ -20,12 +20,13 @@
         {% endblock %}
         <div class="d-flex">
             {% include 'component/_sidebar.html.twig' %}
-            <div class="d-flex flex-column justify-content-between">
+            <div class="d-flex w-100 flex-column justify-content-between">
                 {% block body %}{% endblock %}
+
                 {% block footer %}
                     {% include 'component/_footer.html.twig' %}
                 {% endblock %}
-            </div>
+                </div>
         </div>
         
     </body>
