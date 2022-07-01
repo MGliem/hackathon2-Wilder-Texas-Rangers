@@ -123,7 +123,7 @@ html.is-animating .transition-left {
 
 html.is-leaving .transition-left {
     opacity: 0;
-    transform: translateX(-100%) translateY(-5%) rotate(-70deg);
+    transform: translateX(-100%) translateY(-5%) rotate(70deg);
 }
 
 .transition-up {
