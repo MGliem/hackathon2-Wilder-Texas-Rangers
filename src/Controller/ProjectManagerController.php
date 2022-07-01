@@ -24,9 +24,14 @@ class ProjectManagerController extends AbstractController
     }
 
     #[Route('/adopt/add/{mat}', name: 'adopt_add')]
-    public function addUser(Mat $mat, MatchingRepository $matchingRepository): Response
+    public function addUser(Mat $mat, MatchingRepository $matchingRepository, UserRepository $userRepository): Response
     {
         $mat->setMasterChief($this->getUser());
+        $apsidian = $mat->getApsidian();
+        $apsidian->setPoints($apsidian->getPoints() + 20);
+        $masterChief = $mat->getMasterChief();
+        $masterChief->setPoints($masterChief->getPoints() +20);
+        $userRepository->add($apsidian, true);
         $matchingRepository->add($mat, true);
         return $this->redirectToRoute('manager_adopt');
     }
