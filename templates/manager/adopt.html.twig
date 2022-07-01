@@ -30,6 +30,12 @@
 								<p class="card-text px-5">Points: {{ m.apsidian.points }}
 								<br>
 								On project: {{ m.project.name }}
+								<br>
+								<div class="d-flex justify-content-center">
+								{% for skill in m.apsidian.skills %}
+									<span class="btn btn-outline-primary mx-2">{{ skill }}</span><br>
+								{% endfor %}
+								</div>
 								</p>
 								<div class="square-card-text"></div>
 							</div>
