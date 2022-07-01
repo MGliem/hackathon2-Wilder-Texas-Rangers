@@ -10,9 +10,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-
-
-    
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
@@ -20,9 +17,6 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
-
-
         $faker = Factory::create();
         for ($i = 0; $i < 3; $i++) {
             $user = new User;

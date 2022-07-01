@@ -1,7 +1,7 @@
-<nav class="navbar navbar-light bg-light py-0">
+<nav class="navbar navbar-dark bg-light py-0">
     <div class="w-100 h-100 d-flex">
         <a class="navbar-brand mx-0 py-0 align-items-center d-flex" href="/home">
-            <img class="w-fit" src="{{ asset('build/images/favicon.png') }}" alt="apsidelogo"></a>
+            <img class="w-fit bg-light" src="{{ asset('build/images/favicon.png') }}" alt="apsidelogo"></a>
             <div class="links align-items-center d-flex justify-content-end flex-grow-1 border-bottom border-3 ps-0 border-primary">
                 <a href="/home" class="text-decoration-none mx-3 fs-4">
                     <i class=" px-2 fs-4 bi-house-fill"></i>
@@ -11,6 +11,12 @@
                     <i class="fa-solid fa-address-card"></i>
                     Profile
                 </a>
+                {% if is_granted('ROLE_MASTERCHIEF') %}
+                    <a href="{{ path('manager_adopt') }}" class="text-decoration-none mx-3 fs-4">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Find an apsidian
+                    </a>
+                {% endif %}
                 <a href="/project" class="text-decoration-none mx-3 fs-4">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     Find a project

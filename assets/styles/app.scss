@@ -27,7 +27,6 @@ html {
     bottom: 0;
     left: 0;
     padding: 58px 0 0; /* Height of navbar */
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
     width: 240px;
     z-index: 600;
   }
@@ -93,4 +92,36 @@ footer a:hover {
 
 .taille{
     height: calc(100vh - $navbarHeight);
+
+.transition-right {
+    opacity: 1;
+    transition: 500ms;
+    transform: translateX(0);
+    transform-origin: left;
+}
+
+html.is-animating .transition-right {
+    opacity: 0;
+}
+
+html.is-leaving .transition-right {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.transition-left {
+    opacity: 1;
+    transition: 500ms;
+    transform: translateX(0);
+    transform-origin: right;
+}
+
+html.is-animating .transition-left {
+    opacity: 0;
+}
+
+html.is-leaving .transition-left {
+    opacity: 0;
+    transform: translateX(-100%);
+
 }

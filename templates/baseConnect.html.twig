@@ -17,12 +17,12 @@
         {{ encore_entry_script_tags('app') }}
         {% block javascripts %}{% endblock %}
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         {% block navbar %}{% endblock %}
-        {% block body %}{% endblock %}
-
+        {% block body %}{% endblock %}  
         {% block footer %}
             {% include 'component/_footer.html.twig' %}
         {% endblock %}
     </body>
+
 </html>
