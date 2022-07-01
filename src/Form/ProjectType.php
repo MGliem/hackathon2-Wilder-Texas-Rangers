@@ -21,7 +21,7 @@ class ProjectType extends AbstractType
             ->add('image2')
             ->add('image3')
             ->add('hasSuperProject', CheckboxType::class, [
-                'label'    => 'Is a super project',
+                'label'    => 'Is a super project (If you want to promote your project for 10 points, click here! )',
                 'required' => false,
             ])
         ;
