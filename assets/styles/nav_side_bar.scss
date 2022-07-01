@@ -1,6 +1,124 @@
 @import "variables.scss";
 
+.box2 {
+    width: 300px;
+    border: 4px solid $secondary;
+    padding: 20px;
+    text-align: center;
+    font-weight: 900;
+    color: $secondary;
+    font-family: arial;
+    position: relative;
+}
 
-body{
-background-color: $grey;
+
+/* speech bubble 9 */
+
+.sb9:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid $secondary;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -23px;
+}
+
+.sb9:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -18px;
+}
+
+
+/* speech bubble 10 */
+
+.sb10:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid $secondary;
+    right: 50%;
+    top: -23px;
+}
+
+.sb10:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    right: 50%;
+    top: -18px;
+}
+
+
+/* speech bubble 11 */
+
+.sb11:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid $secondary;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    left: -23px;
+}
+
+.sb11:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    left: -17px;
+}
+
+
+/* speech bubble 12 */
+
+.sb12:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid $secondary;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    right: -23px;
+}
+
+.sb12:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    right: -17px;
 }
