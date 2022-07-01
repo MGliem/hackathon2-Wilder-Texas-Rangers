@@ -47,6 +47,7 @@ class ProjectRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
            ->Where('p.name LIKE :val')
            ->orWhere('p.content LIKE :val')
+           ->orWhere('p.team LIKE :val')
            ->setParameter('val', '%' . $search . '%')
            ->orderBy('p.id', 'DESC')
            ->getQuery()

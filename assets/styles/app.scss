@@ -90,6 +90,10 @@ footer a:hover {
     color:#F0F0F0;
 }
 
+.taille{
+    height: calc(100vh - $navbarHeight);
+}
+
 .transition-right {
     opacity: 1;
     transition: 500ms;
