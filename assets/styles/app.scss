@@ -113,7 +113,7 @@ html.is-leaving .transition-right {
 .transition-left {
     opacity: 1;
     transition: 500ms;
-    transform: translateX(0);
+    transform: translateY(0);
     transform-origin: right;
 }
 
@@ -124,4 +124,19 @@ html.is-animating .transition-left {
 html.is-leaving .transition-left {
     opacity: 0;
     transform: translateX(-100%) translateY(-5%) rotate(-70deg);
+}
+
+.transition-up {
+    opacity: 1;
+    transition: 500ms;
+    transform: translateY(0);
+}
+
+html.is-animating .transition-up {
+    opacity: 0;
+}
+
+html.is-leaving .transition-up {
+    opacity: 0;
+    transform: translateY(-100%);
 }

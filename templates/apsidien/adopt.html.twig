@@ -40,6 +40,7 @@
 					<a onclick="document.getElementById('swup').classList.remove('transition-right');document.getElementById('swup').classList.add('transition-left');" href="{{ path('apsidien_adopt_reject', {'project': project.id}) }}">
 						<i class="rejected bi bi-x-square text-danger"></i>
 					</a>
+					<a onclick="document.getElementById('swup').classList.remove('transition-right');document.getElementById('swup').classList.add('transition-up');" href="{{ path('apsidien_adopt_add', {'project': project.id}) }}" class="accepted text-decoration-none">👍</a>
 					<a onclick="document.getElementById('swup').classList.remove('transition-left');document.getElementById('swup').classList.add('transition-right');" href="{{ path('apsidien_adopt_add', {'project': project.id}) }}">
 						<i class="accepted bi bi-check-square text-success"></i>
 					</a>
