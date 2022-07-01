@@ -6,6 +6,7 @@
 
 {% block stylesheets %}
 	{{ encore_entry_link_tags('apsidienStyle') }}
+	{{ encore_entry_link_tags('nav') }}
 {% endblock %}
 
 {% block body %}
@@ -16,9 +17,10 @@
 	</div>
 
 	<section class="home-apsidien container-fluid py-5">
-
+<div class="d-flex align-items-center ms-3">
+<i class="fa-solid fa-robot fa-xl fa-bounce"></i><div class="box2 sb11 ms-3">Here you can search through all projects</div>
+</div>
 		{{ form_start(form) }}
-
 		<div class="d-flex justify-content-end">
 			{{ form_errors(form.search) }}
 			<div class="input-group mb-3 w-25">
