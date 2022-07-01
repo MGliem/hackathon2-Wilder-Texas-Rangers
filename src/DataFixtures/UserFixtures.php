@@ -10,6 +10,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
+
+    public const AGENCY = ['Orléans', 'Paris', 'Lyon', 'Strasbourg', 'Lille'];
+
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
@@ -30,7 +33,7 @@ class UserFixtures extends Fixture
             $user->setFirstName($faker->firstName());
             $user->setLastName($faker->lastName());
             $user->setSkills(['Smart', 'Punctual', 'Strong']);
-            $user->setAgency($faker->city());
+            $user->setAgency(self::AGENCY[array_rand(self::AGENCY)]);
             $user->setBio($faker->sentence());
             $user->setPhoto('assets/images/photo.jpg');
             $user->setPoints($faker->numberBetween(1, 200));
@@ -51,7 +54,7 @@ class UserFixtures extends Fixture
             $user->setFirstName($faker->firstName());
             $user->setLastName($faker->lastName());
             $user->setSkills(['Smart', 'Punctual', 'Strong']);
-            $user->setAgency($faker->city());
+            $user->setAgency(self::AGENCY[array_rand(self::AGENCY)]);
             $user->setBio($faker->sentence());
             $user->setPhoto('images/masterchief.jpg');
             $user->setPoints($faker->numberBetween(1, 200));
@@ -72,7 +75,7 @@ class UserFixtures extends Fixture
             $user->setFirstName($faker->firstName());
             $user->setLastName($faker->lastName());
             $user->setSkills(['Smart', 'Punctual', 'Strong']);
-            $user->setAgency($faker->city());
+            $user->setAgency(self::AGENCY[array_rand(self::AGENCY)]);
             $user->setBio($faker->sentence());
             $user->setPhoto('assets/images/masterchief.jpg');
             $user->setPoints($faker->numberBetween(1, 200));
