@@ -8,6 +8,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	{{ encore_entry_link_tags('apsidienStyle') }}
+	{{ encore_entry_link_tags('nav') }}
 {% endblock %}
 
 {% block body %}
@@ -17,22 +18,29 @@
 			<h1 class="text-secondary title-size w-fit mt-0">Find your ❤️ project</h1>
 		</div>
 		{% if project is not null %}
-			<div class="col-lg-4 pt-5 mx-auto">
-				<div class="card col-lg-12 my-4 transition-right" id="swup">
-					<div class="card-body d-flex flex-column justify-content-between">
-						<div class="d-flex flex-column">
-							<div class="title mx-auto w-fit mb-5">
-								<p class="title-before text-secondary fs-5">Team
-									{{ project.team|u.truncate('10', '...') }}</p>
-								<h2 class="card-title text-center text-primary fs-3 fw-bold title-size">{{ project.name|u.truncate(20, '...') }}</h2>
+			<div class="row">
+				<div class="d-flex align-items-center ms-3 col-lg-6">
+					<i class="fa-solid fa-robot fa-xl fa-bounce"></i>
+					<div class="box2 sb11 ms-3">Click ❌ or ✅ to apply to a project!</div>
+				</div>
+				<div class="col-lg-6 pt-5 mx-auto">
+
+					<div class="card col-lg-12 my-4 transition-right" id="swup">
+						<div class="card-body d-flex flex-column justify-content-between">
+							<div class="d-flex flex-column">
+								<div class="title mx-auto w-fit mb-5">
+									<p class="title-before text-secondary fs-5">Team
+										{{ project.team|u.truncate('10', '...') }}</p>
+									<h2 class="card-title text-center text-primary fs-3 fw-bold title-size">{{ project.name|u.truncate(20, '...') }}</h2>
+								</div>
+								<div class="position-relative">
+									<p class="card-text px-5">{{ project.content|u.truncate(250, '...') }}</p>
+									<div class="square-card-text"></div>
+								</div>
 							</div>
-							<div class="position-relative">
-								<p class="card-text px-5">{{ project.content|u.truncate(250, '...') }}</p>
-								<div class="square-card-text"></div>
+							<div class="d-flex justify-content-center gap-3">
+								<a href="#" class="btn btn-secondary w-50">See More</a>
 							</div>
-						</div>
-						<div class="d-flex justify-content-center gap-3">
-							<a href="#" class="btn btn-secondary w-50">See More</a>
 						</div>
 					</div>
 				</div>
